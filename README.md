@@ -63,7 +63,7 @@ specific options.
 It tries to follow the [PEP 8](https://www.python.org/dev/peps/pep-0008/) style guide for [Python](https://www.python.org/) code.
 
 ## PORTABILITY
-To be tested under Windows...
+Tested OK under Windows (though with backslashes instead os slashes, of course).
 
 ## HISTORY
 The basename utility first appeared in 4.4BSD.
