@@ -18,7 +18,7 @@ string \[...\]
 
 ## DESCRIPTION
 The **basename** utility deletes any prefix ending with the last slash character
-('/' under Unix-like Operating Systems or '\' under Windows operating Systems)
+('/' under Unix-like Operating Systems or '\\' under Windows operating Systems)
 present in string (after first stripping trailing slashes), and a suffix, if given.
 The suffix is not stripped if it is identical to the remaining characters in string.
 The resulting filename is written to the standard output.
@@ -40,8 +40,8 @@ Options | Use
 --|Options processing terminator.
 
 ## ENVIRONMENT
-As the original FreeBSD basename command, this version does not take the
-POSIXLY_CORRECT environment variable into account.
+As the original [FreeBSD basename](https://www.freebsd.org/cgi/man.cgi?query=basename) command, this version does not take the
+[POSIXLY_CORRECT](https://www.freebsd.org/cgi/man.cgi?query=environ) environment variable into account.
 
 ## EXIT STATUS
 The basename utility exits 0 on success, and >0 if an error occurs.
@@ -57,7 +57,7 @@ The basename utility exits 0 on success, and >0 if an error occurs.
 The basename utility is expected to be IEEE Std 1003.2 (“[POSIX](https://en.wikipedia.org/wiki/POSIX).2”) compatible.
 
 This version is fully compatible with the FreeBSD version (apart from the
-invalid option error message). It also implements the GNU coreutils version
+invalid option error message). It also implements the [GNU coreutils](https://www.gnu.org/software/coreutils/) version
 specific options.
 
 It tries to follow the [PEP 8](https://www.python.org/dev/peps/pep-0008/) style guide for [Python](https://www.python.org/) code.
