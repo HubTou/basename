@@ -1,5 +1,4 @@
 NAME=basename
-VERSION=1.0.0
 SOURCES=main.py
 DESTROOTDIR=/usr/local
 

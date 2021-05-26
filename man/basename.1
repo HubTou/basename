@@ -82,39 +82,38 @@ is taken as its argument, and all other arguments are treated as a
 .Op Fl a|--multiple
 Support multiple arguments and treat each as a name
 .Pp
-.Op Fl d|--debug
-Enable debug mode
-.Pp
-.Op Fl h|--help|-?
-Print usage and this help message and exit
-.Pp
 .Op Fl s|--suffix Ar SUFFIX
 Remove trailing SUFFIX. Implies -a
-.Pp
-.Op Fl v|--version
-Print version and exit
 .Pp
 .Op Fl z|--zero
 End each output line with NUL, not newline
 .Pp
+.Op Fl -debug
+Enable debug mode
+.Pp
+.Op Fl -help|-?
+Print usage and this help message and exit
+.Pp
+.Op Fl -version
+Print version and exit
+.Pp
 .Op Fl -
 Options processing terminator
 .Sh ENVIRONMENT
-As the original
+Contrary to the original
 .Fx
 .Nm
-command, this version does not take
-the
+command, this version takes the
 .Ev POSIXLY_CORRECT
-environment variable into account.
+environment variable into account,
+disabling all the command's options except the options terminator (--).
 .Sh EXIT STATUS
 .Ex -std basename
 .Sh SEE ALSO
 .Xr dirname 1 ,
 .Xr csh 1 ,
 .Xr sh 1 ,
-.Xr basename 3 ,
-.Xr dirname 3
+.Xr basename 3
 .Sh STANDARDS
 The
 .Nm
@@ -125,11 +124,12 @@ compatible.
 This version is fully compatible with the
 .Fx
 version (apart from the invalid option error message).
-It also implements the GNU coreutils version specific options.
+It also implements the GNU coreutils version specific options
+(--multiple, --suffix, -z, --zero).
 .Pp
 It tries to follow the PEP 8 style guide for Python code.
 .Sh PORTABILITY
-To be tested under Windows...
+Tested OK under Windows (though with backslashes instead os slashes, of course).
 .Sh HISTORY
 The
 .Nm
@@ -139,7 +139,9 @@ utility first appeared in
 This version was made for 
 .Lk https://github.com/HubTou/PNU [The PNU project / PyNIX]
 in order to test
-the b2bt command.
+the
+.Lk https://github.com/HubTou/b2bt [b2bt]
+command.
 .Sh LICENSE
 This utility is available under the 3-clause BSD license.
 .Sh AUTHORS
