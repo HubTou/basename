@@ -1,7 +1,7 @@
 .\" Copyright (c) 1990, 1993, 1994
 .\"	The Regents of the University of California.  All rights reserved.
 .\"
-.\" This man page is derived from software contributed to Berkeley by
+.\" This code is derived from software contributed to Berkeley by
 .\" the Institute of Electrical and Electronics Engineers, Inc.
 .\"
 .\" Redistribution and use in source and binary forms, with or without
@@ -32,68 +32,30 @@
 .\" $FreeBSD$
 .\"
 .Dd June 4, 2021
-.Dt BASENAME 1
+.Dt DIRNAME 1
 .Os
 .Sh NAME
-.Nm basename
-.Nd return filename or directory portion of pathname
+.Nm dirname
+.Nd return directory portion of pathname
 .Sh SYNOPSIS
-.Nm
+.Nm dirname
 .Ar string
-.Op Ar suffix
-.Nm
-.Op Fl a
-.Op Fl d
-.Op Fl s Ar suffix
+.Op Ar ...
+.Nm dirname
 .Op Fl z
 .Ar string
 .Op Ar ...
 .Sh DESCRIPTION
 The
-.Nm
-utility deletes any prefix ending with the last slash character
-('/' under Unix-like Operating Systems
-or '\\' under Windows operating Systems)
-present in
+.Nm dirname
+utility deletes the filename portion, beginning
+with the last slash
+.Ql \&/
+character to the end of
 .Ar string
 (after first stripping trailing slashes),
-and a
-.Ar suffix ,
-if given.
-The
-.Ar suffix
-is not stripped if it is identical to the remaining characters in
-.Ar string .
-The resulting filename is written to the standard output.
-A non-existent suffix is ignored.
-If
-.Fl a
-is specified, then every argument is treated as a
-.Ar string
-as if
-.Nm
-were invoked with just one argument.
-If
-.Fl s
-is specified, then the
-.Ar suffix
-is taken as its argument, and all other arguments are treated as a
-.Ar string .
-.Pp
-The
-.Fl d
-option instead prints the directory component, that is, string up to but not including the final slash.
-If the string contains no slash, a period and newline are printed.
+and writes the result to the standard output.
 .Ss OPTIONS
-.Op Fl a|--multiple
-Support multiple arguments and treat each as a name
-.Pp
-.Op Fl d|--dirname
-Print the directory component instead
-.Pp
-.Op Fl s|--suffix Ar SUFFIX
-Remove trailing SUFFIX. Implies -a
-.Pp
 .Op Fl z|--zero
 End each output line with NUL, not newline
 .Pp
@@ -117,12 +79,12 @@ command, this version takes the
 environment variable into account,
 disabling all the command's options except the options terminator (--).
 .Sh EXIT STATUS
-.Ex -std basename
+.Ex -std dirname
 .Sh SEE ALSO
-.Xr dirname 1 ,
+.Xr basename 1 ,
 .Xr csh 1 ,
 .Xr sh 1 ,
-.Xr basename 3
+.Xr dirname 3
 .Sh STANDARDS
 The
 .Nm
@@ -132,18 +94,12 @@ compatible.
 .Pp
 This version is fully compatible with the
 .Fx
-version (apart from the help and error messages).
+version (apart from the help and error message).
 It also implements the GNU coreutils version specific options
 (
-.Fl -multiple
-.Fl -suffix
 .Fl z
 .Fl -zero
-) and the Plan 9 and Inferno operating systems
-.Fl d
-option for
-.Xr dirname 1
-behaviour.
+).
 .Pp
 It tries to follow the PEP 8 style guide for Python code.
 .Sh PORTABILITY
@@ -154,7 +110,7 @@ The
 utility first appeared in
 .Bx 4.4 .
 .Pp
-This version was made for 
+This version was made for
 .Lk https://github.com/HubTou/PNU [The PNU project / PyNIX]
 in order to test
 the

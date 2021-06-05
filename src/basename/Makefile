@@ -25,7 +25,7 @@ check-code: /usr/local/bin/pylint
 lint: check-code
 
 check-security: /usr/local/bin/bandit
-	bandit -r ${SOURCES}
+	-bandit -r ${SOURCES}
 
 audit: check-security
 
@@ -33,10 +33,10 @@ check-unused: /usr/local/bin/vulture
 	-vulture --sort-by-size ${SOURCES}
 
 check-version: /usr/local/bin/vermin
-	vermin ${SOURCES}
+	-vermin ${SOURCES}
 
 check-sloc: /usr/local/bin/pygount
-	pygount --format=summary .
+	-pygount --format=summary .
 
 checks: check-code check-security check-unused check-version check-sloc
 
@@ -46,15 +46,20 @@ format: /usr/local/bin/black
 ${NAME}.1.gz: ../../man/${NAME}.1
 	@gzip -k9c ../../man/${NAME}.1 > ${NAME}.1.gz
 
-all: ${NAME}.1.gz
+dirname.1.gz: ../../man/dirname.1
+	@gzip -k9c ../../man/dirname.1 > dirname.1.gz
 
-install: ${NAME}.1.gz
+all: ${NAME}.1.gz dirname.1.gz
+
+install: ${NAME}.1.gz dirname.1.gz
 	install -m 0755 -o root -g wheel main.py ${DESTROOTDIR}/bin/${NAME}
+	ln ${DESTROOTDIR}/bin/${NAME} ${DESTROOTDIR}/bin/dirname
 	install -m 0644 -o root -g wheel ${NAME}.1.gz ${DESTROOTDIR}/man/man1
+	install -m 0644 -o root -g wheel dirname.1.gz ${DESTROOTDIR}/man/man1
 
 uninstall:
-	rm -f ${DESTROOTDIR}/bin/${NAME}
-	rm -f ${DESTROOTDIR}/man/man1/${NAME}.1.gz
+	rm -f ${DESTROOTDIR}/bin/${NAME} ${DESTROOTDIR}/bin/dirname
+	rm -f ${DESTROOTDIR}/man/man1/${NAME}.1.gz ${DESTROOTDIR}/man/man1/dirname.1.gz
 
 whatis:
 	makewhatis
@@ -63,7 +68,7 @@ love:
 	@echo "Not war!"
 
 clean:
-	@rm -f ${NAME}.1.gz
+	@rm -f ${NAME}.1.gz dirname.1.gz
 
 distclean: clean
 
