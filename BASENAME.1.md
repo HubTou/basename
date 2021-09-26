@@ -73,7 +73,7 @@ Tested OK under Windows (though with backslashes instead os slashes, of course).
 ## HISTORY
 The **basename** utility first appeared in 4.4BSD.
 
-This version was made for [The PNU project / PyNIX](https://github.com/HubTou/PNU)
+This version was made for the [PNU project](https://github.com/HubTou/PNU)
 in order to test the [b2bt](https://github.com/HubTou/b2bt) command.
 
 ## LICENSE

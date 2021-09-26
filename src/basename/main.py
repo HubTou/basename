@@ -11,7 +11,7 @@ import os
 import sys
 
 # Version string used by the what(1) and ident(1) commands:
-ID = "@(#) $Id: basename, dirname - return filename or directory portion of pathname v1.2.0 (June 5, 2021) by Hubert Tournier $"
+ID = "@(#) $Id: basename, dirname - return filename or directory portion of pathname v1.2.1 (September 26, 2021) by Hubert Tournier $"
 
 # Default parameters. Can be superseded by environment variables, then command line options
 parameters = {
@@ -21,6 +21,14 @@ parameters = {
     "Suffix": "",
     "Zero": False,
 }
+
+
+################################################################################
+def initialize_debugging(program_name):
+    """Debugging set up"""
+    console_log_format = program_name + ": %(levelname)s: %(message)s"
+    logging.basicConfig(format=console_log_format, level=logging.DEBUG)
+    logging.disable(logging.INFO)
 
 
 ################################################################################
@@ -270,10 +278,7 @@ def main():
     if program_name == "dirname":
         parameters["Dirname"] = True
 
-    console_log_format = program_name + ": %(levelname)s: %(message)s"
-    logging.basicConfig(format=console_log_format, level=logging.DEBUG)
-    logging.disable(logging.INFO)
-
+    initialize_debugging(program_name)
     process_environment_variables()
     arguments = process_command_line()
 
